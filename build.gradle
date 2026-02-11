@@ -7,7 +7,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation ()
+    testImplementation (
+            "com.codeborne:selenide:6.19.1",
+            "org.junit.jupiter:junit-jupiter:5.9.3")
 }
 
 tasks.withType(JavaCompile) {
