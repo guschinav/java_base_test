@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class TestBase {
     @BeforeAll
     static void beforeAll(){
-        Configuration.browser = "firefox";
+        Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.timeout = 10000; // default 4000
