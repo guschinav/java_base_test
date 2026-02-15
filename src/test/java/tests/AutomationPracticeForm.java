@@ -8,17 +8,21 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static tests.testdata.TestData.*;
 
 public class AutomationPracticeForm extends TestBase {
 
     @Test
     void sucessfulFillPracticeFormTest (){
-        open("/automation-practice-form");
-        $("#firstName").setValue("Vladimir");
-        $("#lastName").setValue("Smith");
-        $("#userEmail").setValue("vlOdimir@mail.com");
-        $("#genterWrapper").$(byText("Male")).click();
-        $("#userNumber").setValue("0123456789");
+        open("");
+        $$(".card-body").findBy(text("Forms")).click();
+        $$(".router-link").findBy(text("Practice Form")).click();
+
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(userEmail);
+        $("#genterWrapper").$(byText(genterWrapper)).click();
+        $("#userNumber").setValue(userNumber);
 
         $("#dateOfBirthInput").click();
         $(".react-datepicker__year-select").click();
@@ -29,49 +33,46 @@ public class AutomationPracticeForm extends TestBase {
         $(".react-datepicker__day.react-datepicker__day--010").click();
 
 
-        $("#subjectsInput").setValue("M");
+        $("#subjectsInput").setValue(subjectsInput);
         $(byText("Maths")).click();
 
-        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText(hobbiesWrapper)).click();
 
-        $("#uploadPicture").uploadFile(new File("src/test/resources/map.jpg"));
+        $("#uploadPicture").uploadFile(new File("src/test/resources/" + picture));
 
-        $("#currentAddress").setValue("Address");
+        $("#currentAddress").setValue(currentAddress);
 
         $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#stateCity-wrapper").$(byText(state)).click();
 
         $("#city").click();
-        $("#stateCity-wrapper").$(byText("Noida")).click();
+        $("#stateCity-wrapper").$(byText(city)).click();
 
         $("#submit").click();
-
-
-
 
         //Checkings
         $(".modal-header").shouldBe(text(
                 "Thanks for submitting the form"));
         $$("tr").find(Condition.text("Student Name"))
-                .$$("td").get(1).shouldHave(Condition.text("Vladimir Smith"));
+                .$$("td").get(1).shouldHave(Condition.text(firstName + " " + lastName));
         $$("tr").find(Condition.text("Student Email"))
-                .$$("td").get(1).shouldHave(Condition.text("vlOdimir@mail.com"));
+                .$$("td").get(1).shouldHave(Condition.text(userEmail));
         $$("tr").find(Condition.text("Gender"))
-                .$$("td").get(1).shouldHave(Condition.text("Male"));
+                .$$("td").get(1).shouldHave(Condition.text(genterWrapper));
         $$("tr").find(Condition.text("Mobile"))
-                .$$("td").get(1).shouldHave(Condition.text("0123456789"));
+                .$$("td").get(1).shouldHave(Condition.text(userNumber));
         $$("tr").find(Condition.text("Date of Birth"))
                 .$$("td").get(1).shouldHave(Condition.text("10 August,1999"));
         $$("tr").find(Condition.text("Subjects"))
                 .$$("td").get(1).shouldHave(Condition.text("Maths"));
         $$("tr").find(Condition.text("Hobbies"))
-                .$$("td").get(1).shouldHave(Condition.text("Sports"));
+                .$$("td").get(1).shouldHave(Condition.text(hobbiesWrapper));
         $$("tr").find(Condition.text("Picture"))
                 .$$("td").get(1).shouldHave(Condition.text("map.jpg"));
         $$("tr").find(Condition.text("Address"))
-                .$$("td").get(1).shouldHave(Condition.text("Address"));
+                .$$("td").get(1).shouldHave(Condition.text(currentAddress));
         $$("tr").find(Condition.text("State and City"))
-                .$$("td").get(1).shouldHave(Condition.text("NCR Noida"));
+                .$$("td").get(1).shouldHave(Condition.text(state +" " + city));
 
 
 
