@@ -3,9 +3,6 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 import static tests.testdata.TestData.*;
 
 public class AutomationPracticeForm extends TestBase {
@@ -17,7 +14,7 @@ public class AutomationPracticeForm extends TestBase {
                 .typeFirstName(firstName)
                 .typeLastName(lastName)
                 .typeEmail(userEmail)
-                .setGender(genterWrapper)
+                .setGender(genderWrapper)
                 .typeUserNumber(userNumber)
                 .setDateOfBirth(day, month, year)
                 .typeSubjectsInput("M",subjectsInput)
@@ -29,16 +26,17 @@ public class AutomationPracticeForm extends TestBase {
 
                 //Checkings
                 .checkCompleatedForm("Thanks for submitting the form")
-                .checkResponsiveTable(firstName, lastName,
-                        userEmail,
-                        genterWrapper,
-                        userNumber,
-                        day, month, year,
-                        subjectsInput,
-                        hobbiesWrapper,
-                        picture,
-                        currentAddress,
-                        state, city);
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", userEmail)
+                .checkResult("Gender", genderWrapper)
+                .checkResult("Mobile", userNumber)
+                .checkResult("Date of Birth", day + " " + month + ","+ year)
+                .checkResult("Subjects", subjectsInput)
+                .checkResult("Hobbies", hobbiesWrapper)
+                .checkResult("Picture", picture)
+                .checkResult("Address", currentAddress)
+                .checkResult("State and City", state + " " + city);
+
     }
 
 

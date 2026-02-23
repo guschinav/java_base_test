@@ -3,30 +3,28 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.AddressComponent;
 import pages.components.CalendarComponent;
+import pages.components.TableResultComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$$;
-import static tests.testdata.TestData.*;
-import static tests.testdata.TestData.city;
 
 public class RegistrationPage {
    CalendarComponent calendar = new CalendarComponent();
    AddressComponent stateAndCity = new AddressComponent();
+   TableResultComponent tableResult = new TableResultComponent();
         // Elements
-   private SelenideElement firstNameInput = $(("#firstName"));
-   private SelenideElement lastNameInput = $(("#lastName"));
-   private SelenideElement emailInput = $(("#userEmail"));
-   private SelenideElement genderContainer = $(("#genterWrapper"));
-   private SelenideElement userNumberInput = $(("#userNumber"));
-   private SelenideElement subjectsInput = $(("#subjectsInput"));
-   private SelenideElement hobbiesContainer = $(("#hobbiesWrapper"));
-   private SelenideElement pictureUpload = $(("#uploadPicture"));
-   private SelenideElement currentAddressInput = $(("#currentAddress"));
-   private SelenideElement submitButton = $(("#submit"));
-   private SelenideElement compleatedForm = $((".modal-header"));
-   private SelenideElement responsiveTable = $((".table-responsive"));
+   private final SelenideElement firstNameInput = $(("#firstName"));
+   private final SelenideElement lastNameInput = $(("#lastName"));
+   private final SelenideElement emailInput = $(("#userEmail"));
+   private final SelenideElement genderContainer = $(("#genterWrapper"));
+   private final SelenideElement userNumberInput = $(("#userNumber"));
+   private final SelenideElement subjectsInput = $(("#subjectsInput"));
+   private final SelenideElement hobbiesContainer = $(("#hobbiesWrapper"));
+   private final SelenideElement pictureUpload = $(("#uploadPicture"));
+   private final SelenideElement currentAddressInput = $(("#currentAddress"));
+   private final SelenideElement submitButton = $(("#submit"));
+   private final SelenideElement compleatedForm = $((".modal-header"));
 
 
 
@@ -99,39 +97,16 @@ public class RegistrationPage {
         compleatedForm.shouldBe(text(value));
         return this;
     }
-    private void checkField(String key, String value) {
-        responsiveTable
-                .$(byText(key))
-                .parent()
-                .shouldHave(text(value));
-    }
 
-    public RegistrationPage checkResponsiveTable(
-            String firstName, String lastName,
-            String userEmail,
-            String gender,
-            String userNumber,
-            String day, String month, String year,
-            String subjectsInput,
-            String hobbiesWrapper,
-            String picture,
-            String currentAddress,
-            String state, String city) {
-
-        checkField("Student Name", firstName + " " + lastName);
-        checkField("Student Email", userEmail);
-        checkField("Gender", gender);
-        checkField("Mobile", userNumber);
-        checkField("Date of Birth", day + " " + month + ","+ year);
-        checkField("Subjects", subjectsInput);
-        checkField("Hobbies", hobbiesWrapper);
-        checkField("Picture", picture);
-        checkField("Address", currentAddress);
-        checkField("State and City", state + " " + city);
+    public  RegistrationPage checkResult (String key, String value){
+        tableResult.checkResult(key, value);
 
         return this;
+
     }
 }
+
+
 
 
 
