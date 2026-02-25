@@ -3,6 +3,8 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import tests.testdata.TestData;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
@@ -18,5 +20,10 @@ public class TestBase {
     @AfterEach
     void afterEach (){
         closeWebDriver();
+    }
+
+    @BeforeEach
+    void fakeTestData() {
+        TestData.fakeTestData();
     }
 }
