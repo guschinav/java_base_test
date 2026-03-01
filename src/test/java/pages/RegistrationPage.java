@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import pages.components.AddressComponent;
 import pages.components.CalendarComponent;
 import pages.components.TableResultComponent;
 
@@ -11,20 +10,21 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
    CalendarComponent calendar = new CalendarComponent();
-   AddressComponent stateAndCity = new AddressComponent();
    TableResultComponent tableResult = new TableResultComponent();
         // Elements
-   private final SelenideElement firstNameInput = $(("#firstName"));
-   private final SelenideElement lastNameInput = $(("#lastName"));
-   private final SelenideElement emailInput = $(("#userEmail"));
-   private final SelenideElement genderContainer = $(("#genterWrapper"));
+   private final SelenideElement firstNameInput = $("#firstName");
+   private final SelenideElement lastNameInput = $("#lastName");
+   private final SelenideElement emailInput = $("#userEmail");
+   private final SelenideElement genderContainer = $("#genterWrapper");
    private final SelenideElement userNumberInput = $(("#userNumber"));
-   private final SelenideElement subjectsInput = $(("#subjectsInput"));
-   private final SelenideElement hobbiesContainer = $(("#hobbiesWrapper"));
-   private final SelenideElement pictureUpload = $(("#uploadPicture"));
-   private final SelenideElement currentAddressInput = $(("#currentAddress"));
-   private final SelenideElement submitButton = $(("#submit"));
-   private final SelenideElement compleatedForm = $((".modal-header"));
+   private final SelenideElement subjectsInput = $("#subjectsInput");
+   private final SelenideElement hobbiesContainer = $("#hobbiesWrapper");
+   private final SelenideElement pictureUpload = $("#uploadPicture");
+   private final SelenideElement currentAddressInput = $("#currentAddress");
+   private final SelenideElement stateAndCityContainer= $("#stateCity-wrapper");
+   private final SelenideElement submitButton = $("#submit");
+   private final SelenideElement compleatedForm = $(".modal-header");
+
 
 
 
@@ -32,10 +32,19 @@ public class RegistrationPage {
     // Actions
     public RegistrationPage openPage(){
         open("");
+        return this;
+    }
+    public RegistrationPage clickForms(){
         $$(".card-body").findBy(text("Forms")).click();
+        return this;
+    }
+
+    public RegistrationPage clickPracticeForm(){
         $$(".router-link").findBy(text("Practice Form")).click();
         return this;
     }
+
+
 
     public RegistrationPage typeFirstName(String value){
         firstNameInput.setValue(value);
@@ -84,7 +93,10 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setStateAndCity(String state, String city){
-        stateAndCity.setStateAndCity(state,city);
+        $("#state").click();
+        stateAndCityContainer.$(byText(state)).click();
+        $("#city").click();
+        stateAndCityContainer.$(byText(city)).click();
         return this;
     }
 

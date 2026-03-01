@@ -11,6 +11,8 @@ public class AutomationPracticeForm extends TestBase {
     @Test
     void sucessfulFillPracticeFormTest (){
         registrationPage.openPage()
+                .clickForms()
+                .clickPracticeForm()
                 .typeFirstName(firstName)
                 .typeLastName(lastName)
                 .typeEmail(userEmail)
@@ -43,6 +45,8 @@ public class AutomationPracticeForm extends TestBase {
     @Test
     void sucessfulFillPracticeFormTestWithFakeData (){
         registrationPage.openPage()
+                .clickForms()
+                .clickPracticeForm()
                 .typeFirstName(firstNameFake)
                 .typeLastName(lastNameFake)
                 .typeEmail(userEmailFake)
