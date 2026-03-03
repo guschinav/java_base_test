@@ -2,11 +2,13 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import tests.testdata.TestData;
 
 import static tests.testdata.TestData.*;
 
 public class AutomationPracticeForm extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
+    TestData testData = new TestData();
 
     @Test
     void sucessfulFillPracticeFormTest (){
@@ -47,31 +49,31 @@ public class AutomationPracticeForm extends TestBase {
         registrationPage.openPage()
                 .clickForms()
                 .clickPracticeForm()
-                .typeFirstName(firstNameFake)
-                .typeLastName(lastNameFake)
-                .typeEmail(userEmailFake)
-                .setGender(genderWrapperFake)
-                .typeUserNumber(userNumberFake)
-                .setDateOfBirth(dayFake, monthFake, yearFake)
-                .typeSubjectsInput(subjectsInputTypeFake,subjectsInputFake)
-                .setHobbies(hobbiesWrapperFake)
-                .selectPicture(pictureFake)
-                .typeCurrentAddress(currentAddressFake)
-                .setStateAndCity(stateFake, cityFake)
+                .typeFirstName(testData.firstNameFake)
+                .typeLastName(testData.lastNameFake)
+                .typeEmail(testData.userEmailFake)
+                .setGender(testData.genderWrapperFake)
+                .typeUserNumber(testData.userNumberFake)
+                .setDateOfBirth(testData.dayFake, testData.monthFake, testData.yearFake)
+                .typeSubjectsInput(testData.subjectsInputTypeFake ,testData.subjectsInputFake)
+                .setHobbies(testData.hobbiesWrapperFake)
+                .selectPicture(testData.pictureFake)
+                .typeCurrentAddress(testData.currentAddressFake)
+                .setStateAndCity(testData.stateFake, testData.cityFake)
                 .submitForm()
 
                 //Checkings
                 .checkCompleatedForm("Thanks for submitting the form")
-                .checkResult("Student Name", firstNameFake + " " + lastNameFake)
-                .checkResult("Student Email", userEmailFake)
-                .checkResult("Gender", genderWrapperFake)
-                .checkResult("Mobile", userNumberFake)
-                .checkResult("Date of Birth", dayFake + " " + monthFake + ","+ yearFake)
-                .checkResult("Subjects", subjectsInputFake)
-                .checkResult("Hobbies", hobbiesWrapperFake)
-                .checkResult("Picture", pictureFake)
-                .checkResult("Address", currentAddressFake)
-                .checkResult("State and City", stateFake + " " + cityFake);
+                .checkResult("Student Name", testData.firstNameFake + " " + testData.lastNameFake)
+                .checkResult("Student Email", testData.userEmailFake)
+                .checkResult("Gender", testData.genderWrapperFake)
+                .checkResult("Mobile", testData.userNumberFake)
+                .checkResult("Date of Birth", testData.dayFake + " " + testData.monthFake + ","+ testData.yearFake)
+                .checkResult("Subjects", testData.subjectsInputFake)
+                .checkResult("Hobbies", testData.hobbiesWrapperFake)
+                .checkResult("Picture", testData.pictureFake)
+                .checkResult("Address", testData.currentAddressFake)
+                .checkResult("State and City", testData.stateFake + " " + testData.cityFake);
 
     }
 

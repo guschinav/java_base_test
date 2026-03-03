@@ -24,7 +24,7 @@ public class TestData {
 
 
     //Fake
-    public static String firstNameFake,
+    /*public static String
             lastNameFake,
             userEmailFake,
             genderWrapperFake,
@@ -38,49 +38,50 @@ public class TestData {
             pictureFake,
             currentAddressFake,
             stateFake,
-            cityFake;
+            cityFake;*/
 
-    public static void fakeTestData(){
+
         Faker faker = new Faker(new Locale("en"));;
-        firstNameFake = faker.name().firstName();
-        lastNameFake = faker.name().lastName();
-        userEmailFake = faker.internet().emailAddress();
-        genderWrapperFake = faker.options().option("Male", "Female", "Other");
-        userNumberFake = faker.number().digits(10);
+        public  String firstNameFake = faker.name().firstName();
+        public  String lastNameFake = faker.name().lastName();
+        public  String userEmailFake = faker.internet().emailAddress();
+        public  String genderWrapperFake = faker.options().option("Male", "Female", "Other");
+        public  String userNumberFake = faker.number().digits(10);
         Date birthDate = faker.date().birthday(16, 85);
         SimpleDateFormat yearFormat= new SimpleDateFormat("yyyy");
         SimpleDateFormat monthFormat= new SimpleDateFormat("MMMM", Locale.ENGLISH);
         SimpleDateFormat dayFormat= new SimpleDateFormat("dd");
-        yearFake = yearFormat.format(birthDate);
-        monthFake = monthFormat.format(birthDate);
-        dayFake = dayFormat.format(birthDate);
+        public  String yearFake = yearFormat.format(birthDate);
+        public  String monthFake = monthFormat.format(birthDate);
+        public  String dayFake = dayFormat.format(birthDate);
 
-        subjectsInputTypeFake = faker.options().option("M", "Chemi", "Comput", "Comm");
-        if (subjectsInputTypeFake.equals("M")){
-            subjectsInputFake = "Maths";
-        } else if (subjectsInputTypeFake.equals("Chemi")) {
-            subjectsInputFake = "Chemistry";
-        } else if (subjectsInputTypeFake.equals("Comput")){
-            subjectsInputFake = "Computer Science";
-        } else {
-            subjectsInputFake = "Commerce";
-        }
+        public  String subjectsInputTypeFake = faker.options().option("M", "Chemi", "Comput", "Comm");
+        public String subjectsInputFake = switch (subjectsInputTypeFake) {
+            case "M" -> "Maths";
+            case "Chemi" -> "Chemistry";
+            case "Comput" -> "Computer Science";
+            case "Comm" -> "Commerce";
+            default -> null;
+    };
 
-        hobbiesWrapperFake = faker.options().option("Sports", "Reading", "Music");
-        pictureFake = faker.options().option("map.jpg", "pam.jpg");
-        currentAddressFake = faker.address().fullAddress();
+        public  String hobbiesWrapperFake = faker.options().option("Sports", "Reading", "Music");
+        public  String pictureFake = faker.options().option("map.jpg", "pam.jpg");
+        public  String currentAddressFake = faker.address().fullAddress();
 
-        stateFake = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
+        public  String stateFake = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
 
-        if (stateFake.equals("NCR")) cityFake = faker.options().option("Delhi", "Gurgaon", "Noida");
-        if (stateFake.equals("Uttar Pradesh")) cityFake = faker.options().option("Agra", "Lucknow", "Merrut");
-        if (stateFake.equals("Haryana")) cityFake = faker.options().option("Karnal", "Panipat");
-        if (stateFake.equals("Rajasthan")) cityFake = faker.options().option("Jaipur", "Jaiselmer");
+        public String cityFake = switch (stateFake) {
+        case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
+        case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
+        case "Haryana" -> faker.options().option("Karnal", "Panipat");
+        case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
+        default -> null;
+    };
 
 
 
 
-    }
+
 
 
 
