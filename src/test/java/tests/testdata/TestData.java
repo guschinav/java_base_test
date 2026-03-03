@@ -23,22 +23,6 @@ public class TestData {
     public static String picture = "map.jpg";
 
 
-    //Fake
-    /*public static String
-            lastNameFake,
-            userEmailFake,
-            genderWrapperFake,
-            userNumberFake,
-            monthFake,
-            yearFake,
-            dayFake,
-            subjectsInputFake,
-            subjectsInputTypeFake,
-            hobbiesWrapperFake,
-            pictureFake,
-            currentAddressFake,
-            stateFake,
-            cityFake;*/
 
 
         Faker faker = new Faker(new Locale("en"));;
