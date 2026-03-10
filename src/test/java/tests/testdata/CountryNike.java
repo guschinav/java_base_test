@@ -1,8 +1,8 @@
 package tests.testdata;
 
 public enum CountryNike {
-    Finland("Worn to be Wild"),
-    México("DOS ÍCONOS.");
+    Finland("AIR MAX 90"),
+    México("AIR MAX 95");
 
 
 
@@ -10,6 +10,10 @@ public enum CountryNike {
 
     CountryNike (String description){
         this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 
