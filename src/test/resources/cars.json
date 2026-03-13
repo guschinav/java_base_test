@@ -1,0 +1,16 @@
+{
+  "cars": [
+    { "brand": "Toyota", "model": "Camry", "year": 2020, "price": 25000 },
+    { "brand": "Honda", "model": "Accord", "year": 2019, "price": 23000 },
+    { "brand": "Tesla", "model": "Model 3", "year": 2023, "price": 42000 },
+    { "brand": "BMW", "model": "X5", "year": 2022, "price": 61000 },
+    { "brand": "Audi", "model": "A6", "year": 2021, "price": 55000 },
+    { "brand": "Mercedes", "model": "C-Class", "year": 2020, "price": 48000 },
+    { "brand": "Ford", "model": "Mustang", "year": 2022, "price": 45000 },
+    { "brand": "Volkswagen", "model": "Golf", "year": 2018, "price": 20000 },
+    { "brand": "Hyundai", "model": "Sonata", "year": 2021, "price": 24000 },
+    { "brand": "Kia", "model": "Sportage", "year": 2022, "price": 27000 },
+    { "brand": "Nissan", "model": "Altima", "year": 2019, "price": 22000 },
+    { "brand": "Chevrolet", "model": "Malibu", "year": 2020, "price": 21000 }
+  ]
+}
