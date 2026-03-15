@@ -20,9 +20,26 @@ public class ZIpFilesTests {
     private ClassLoader cl = ZIpFilesTests.class.getClassLoader();
 
 
-
     @Test
     void zipFileParsingTest() throws Exception {
+        try (ZipInputStream zis = new ZipInputStream(
+                cl.getResourceAsStream("Files.zip")
+        )) {
+            ZipEntry entry;
+            while ((entry = zis.getNextEntry()) != null) {
+                String fileName = entry.getName();
+                String extension = getFileExtension(fileName);
+                System.out.println("Файл: " + fileName + " | Расширение: " + extension);
+
+
+
+            }
+
+        }
+    }
+
+    @Test
+    void pdfTest() throws Exception {
         try (ZipInputStream zis = new ZipInputStream(
                 cl.getResourceAsStream("Files.zip")
         )) {
@@ -36,11 +53,41 @@ public class ZIpFilesTests {
                     PDF pdf = new PDF(zis.readAllBytes());
                     Assertions.assertTrue(pdf.text.contains("тестирования загрузки файлов"));
                 }
+            }
+        }
+    }
+
+    @Test
+    void xlsxTest() throws Exception {
+        try (ZipInputStream zis = new ZipInputStream(
+                cl.getResourceAsStream("Files.zip")
+        )) {
+            ZipEntry entry;
+            while ((entry = zis.getNextEntry()) != null) {
+                String fileName = entry.getName();
+                String extension = getFileExtension(fileName);
+                System.out.println("Файл: " + fileName + " | Расширение: " + extension);
+
                 if (extension.equals("xlsx")) {
                     XLS xls = new XLS(zis.readAllBytes());
                     String actualValue = xls.excel.getSheetAt(0).getRow(17).getCell(0).getStringCellValue();
                     Assertions.assertTrue(actualValue.contains("Тестовый заказ 15"));
                 }
+            }
+        }
+    }
+
+    @Test
+    void csvTest() throws Exception {
+        try (ZipInputStream zis = new ZipInputStream(
+                cl.getResourceAsStream("Files.zip")
+        )) {
+            ZipEntry entry;
+            while ((entry = zis.getNextEntry()) != null) {
+                String fileName = entry.getName();
+                String extension = getFileExtension(fileName);
+                System.out.println("Файл: " + fileName + " | Расширение: " + extension);
+
                 if (extension.equalsIgnoreCase("csv")) {
 
                     byte[] bytes = zis.readAllBytes();
@@ -51,15 +98,9 @@ public class ZIpFilesTests {
                         Assertions.assertArrayEquals(expected, row);
                     }
                 }
-
-
             }
-
         }
     }
-
-
-
 
 }
 
