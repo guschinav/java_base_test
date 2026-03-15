@@ -40,6 +40,7 @@ public class ZIpFilesTests {
 
     @Test
     void pdfTest() throws Exception {
+        boolean pdfFound = false;
         try (ZipInputStream zis = new ZipInputStream(
                 cl.getResourceAsStream("Files.zip")
         )) {
@@ -50,15 +51,19 @@ public class ZIpFilesTests {
                 System.out.println("Файл: " + fileName + " | Расширение: " + extension);
 
                 if (extension.equals("pdf")) {
+                    pdfFound=true;
+
                     PDF pdf = new PDF(zis.readAllBytes());
                     Assertions.assertTrue(pdf.text.contains("тестирования загрузки файлов"));
                 }
             }
         }
+        Assertions.assertTrue(pdfFound, "PDF файл не найден в архиве");
     }
 
     @Test
     void xlsxTest() throws Exception {
+        boolean xlsxFound = false;
         try (ZipInputStream zis = new ZipInputStream(
                 cl.getResourceAsStream("Files.zip")
         )) {
@@ -69,16 +74,19 @@ public class ZIpFilesTests {
                 System.out.println("Файл: " + fileName + " | Расширение: " + extension);
 
                 if (extension.equals("xlsx")) {
+                    xlsxFound=true;
                     XLS xls = new XLS(zis.readAllBytes());
                     String actualValue = xls.excel.getSheetAt(0).getRow(17).getCell(0).getStringCellValue();
                     Assertions.assertTrue(actualValue.contains("Тестовый заказ 15"));
                 }
             }
         }
+        Assertions.assertTrue(xlsxFound, "xlsx файл не найден в архиве");
     }
 
     @Test
     void csvTest() throws Exception {
+        boolean csvFound = false;
         try (ZipInputStream zis = new ZipInputStream(
                 cl.getResourceAsStream("Files.zip")
         )) {
@@ -89,6 +97,7 @@ public class ZIpFilesTests {
                 System.out.println("Файл: " + fileName + " | Расширение: " + extension);
 
                 if (extension.equalsIgnoreCase("csv")) {
+                    csvFound = true;
 
                     byte[] bytes = zis.readAllBytes();
                     try (CSVReader csvReader = new CSVReader(new InputStreamReader(new ByteArrayInputStream(bytes), StandardCharsets.UTF_8))) {
@@ -100,6 +109,7 @@ public class ZIpFilesTests {
                 }
             }
         }
+        Assertions.assertTrue(csvFound, "csv файл не найден в архиве");
     }
 
 }
