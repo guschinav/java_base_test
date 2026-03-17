@@ -58,8 +58,9 @@ public class AllureReportTests {
 
     @Test
     @DisplayName("Шаги с аннотацией")
-    public void StepIssueCheckTest (){
+    public void stepIssueCheckTest (){
         WebSteps steps = new WebSteps();
+        SelenideLogger.addListener("allure", new AllureSelenide());
         Screenshot screenshot = new Screenshot();
         steps.openMainPage();
         steps.searchForRepository(REPOSITORY);
